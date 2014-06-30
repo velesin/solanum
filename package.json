@@ -1,0 +1,20 @@
+{
+  "name": "nw-timer",
+  "private": true,
+  "main": "/assets/html/index.html",
+  "window": {
+    "always-on-top": true,
+    "frame": false,
+    "resizable": false,
+    "width": 320,
+    "height": 240,
+    "toolbar": false
+  },
+  "scripts": {
+    "start": "nodewebkit"
+  },
+  "dependencies": {
+    "nodewebkit": "^0.8.6-3",
+    "moment": "^2.7.0"
+  }
+}
