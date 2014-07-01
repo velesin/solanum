@@ -6,7 +6,7 @@ var warningWindow;
 var tray;
 var visible = false;
 
-var focusMode = function() {
+function focusMode() {
   secondaryWindow.leaveKioskMode();
   secondaryWindow.hide();
 
@@ -18,24 +18,24 @@ var focusMode = function() {
   visible = false;
 };
 
-var breakMode = function() {
+function breakMode() {
   warningWindow.hide();
   secondaryWindow.enterKioskMode();
   primaryWindow.enterKioskMode();
 };
 
-var showWarning = function() {
+function showWarning() {
   warningWindow.show();
 };
 
-var toggleTray = function() {
+function toggleTray() {
   if (primaryWindow.isKioskMode) { return; }
 
   visible ? primaryWindow.hide() : primaryWindow.show();
   visible = !visible;
 };
 
-var createApp = function(gui) {
+function createApp(gui) {
   primaryWindow = gui.Window.get();
 
   secondaryWindow = gui.Window.open('blank.html', {
