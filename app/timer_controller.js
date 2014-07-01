@@ -1,3 +1,5 @@
+'use strict'
+
 var moment = require('moment');
 var config = require('../config');
 
@@ -9,10 +11,6 @@ module.exports = function($scope, $timeout, nodeWebkit) {
   var timeToBreak = focusDuration - moment.duration(config.warningPeriod, 'seconds').asMilliseconds();
   var timer;
 
-  var pad = function(number) {
-    return number < 10 ? '0' + number : number;
-  };
-
   var updateTime = function updateTime() {
     var elapsedTime = moment().diff(startTime);
 
@@ -22,16 +20,15 @@ module.exports = function($scope, $timeout, nodeWebkit) {
     }
 
     if (focusMode && elapsedTime >= focusDuration) {
-      $scope.elapsedTime = '00:00:00';
+      $scope.elapsedTime = 0;
       $scope.break();
     } else {
-      var duration = moment.duration(elapsedTime);
-      $scope.elapsedTime = pad(duration.hours()) + ':' + pad(duration.minutes()) + ':' + pad(duration.seconds());
+      $scope.elapsedTime = elapsedTime;
       timer = $timeout(updateTime, 250);
     }
   };
 
-  $scope.elapsedTime = '00:00:00';
+  $scope.elapsedTime = 0;
 
   $scope.focus = function() {
     if (timer) {
@@ -58,7 +55,7 @@ module.exports = function($scope, $timeout, nodeWebkit) {
     if (timer) {
       $timeout.cancel(timer);
     }
-    $scope.elapsedTime = '00:00:00';
+    $scope.elapsedTime = 0;
     focusMode = true;
     nodeWebkit.focus();
   };

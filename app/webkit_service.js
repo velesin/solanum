@@ -1,3 +1,5 @@
+'use strict'
+
 var primaryWindow;
 var secondaryWindow;
 var warningWindow;

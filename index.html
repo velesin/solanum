@@ -10,7 +10,7 @@
 </head>
 <body data-ng-controller="TimerCtrl" class="container">
 
-<h1 class="text-center">{{elapsedTime}}</h1>
+<h1 class="text-center">{{elapsedTime|asClock}}</h1>
 
 <button data-ng-click="focus()" type="button" class="btn btn-primary btn-block btn-lg">Focus</button>
 <button data-ng-click="break()" type="button" class="btn btn-success btn-block btn-lg">Break</button>

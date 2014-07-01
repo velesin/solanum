@@ -1,10 +1,12 @@
 'use strict'
 
-var nodeWebkit = require('./app/webkit_service.js');
-var timerCtrl = require('./app/timer_controller.js');
+var nodeWebkit = require('./app/webkit_service');
+var timerCtrl = require('./app/timer_controller');
+var asClockFilter = require('./app/as_clock_filter');
 
 angular.module('timerApp', [])
   .value('nodeWebkit', nodeWebkit)
-  .controller('TimerCtrl', timerCtrl);
+  .controller('TimerCtrl', timerCtrl)
+  .filter('asClock', asClockFilter);
 
 nodeWebkit.start(require('nw.gui'));
