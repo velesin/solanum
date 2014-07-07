@@ -48,11 +48,14 @@ function createApp(gui) {
     show: false
   });
 
+  var warningWindowWidth = 160;
+  var warningWindowHeight = 40;
+  var warningWindowMargin = 40;
   warningWindow = gui.Window.open('warning.html', {
-    x: window.screen.width - 200,
-    y: window.screen.height - 80,
-    width: 160,
-    height: 40,
+    width: warningWindowWidth,
+    height: warningWindowHeight,
+    x: window.screen.width - warningWindowWidth - warningWindowMargin,
+    y: window.screen.height - warningWindowHeight - warningWindowMargin,
     'always-on-top': true,
     frame: false,
     resizable: false,
