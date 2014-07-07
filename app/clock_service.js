@@ -4,8 +4,8 @@ var moment = require('moment');
 var config = require('../config');
 
 function Clock($timeout, callbacks) {
-  var focusDuration = moment.duration(config.focusDuration, 'minutes').asMilliseconds();
-  var warningPeriod = moment.duration(config.warningPeriod, 'seconds').asMilliseconds();
+  var focusDuration = moment.duration(config.focusDurationMinutes, 'minutes').asMilliseconds();
+  var warningPeriod = moment.duration(config.warningPeriodSeconds, 'seconds').asMilliseconds();
 
   var tick;
 

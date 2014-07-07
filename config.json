@@ -1,4 +1,4 @@
 {
-  "focusDuration": 25,
-  "warningPeriod": 10
+  "focusDurationMinutes": 25,
+  "warningPeriodSeconds": 10
 }
