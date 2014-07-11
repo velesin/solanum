@@ -1,6 +1,6 @@
 'use strict'
 
-var controller = require('../app/timer_controller.js');
+var controller = require('../app/timer_controller');
 
 var $scope;
 var nodeWebkit;

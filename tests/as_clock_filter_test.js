@@ -1,6 +1,6 @@
 'use strict'
 
-var filter = require('../app/as_clock_filter.js')();
+var filter = require('../app/as_clock_filter')();
 
 var secondInMsec = 1000;
 var minuteInMsec = secondInMsec * 60;
