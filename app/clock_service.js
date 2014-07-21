@@ -3,35 +3,26 @@
 var moment = require('moment');
 var config = require('../config');
 
-function Clock($timeout, callbacks) {
+function Clock($timeout, ticker, callbacks) {
   var focusDuration = moment.duration(config.focusDurationMinutes, 'minutes').asMilliseconds();
   var warningPeriod = moment.duration(config.warningPeriodSeconds, 'seconds').asMilliseconds();
-  var clockRefreshInterval = 250;
 
-  var tick;
-
-  var activeTimer = null;
   var startTime;
   var breakWarning;
 
-  function start() {
-    stop();
+  function start(callback) {
     startTime = moment();
     breakWarning = true;
-    tick();
+    ticker.start(callback);
   };
 
   function stop() {
-    if (activeTimer) {
-      $timeout.cancel(activeTimer);
-      activeTimer = null;
-    }
+    ticker.stop();
   };
 
   function countUp() {
     var elapsedTime = moment().diff(startTime);
     callbacks.tick(elapsedTime);
-    activeTimer = $timeout(tick, clockRefreshInterval);
   };
 
   function countDown() {
@@ -43,29 +34,27 @@ function Clock($timeout, callbacks) {
     }
 
     if (elapsedTime == 0) {
+      ticker.stop();
       callbacks.end();
     } else {
       callbacks.tick(elapsedTime);
-      activeTimer = $timeout(tick, clockRefreshInterval);
     }
   };
 
 
   this.up = function() {
-    tick = countUp;
-    start();
+    start(countUp);
   };
 
   this.down = function() {
-    tick = countDown;
-    start();
+    start(countDown);
   };
 
   this.stop = stop;
 };
 
-module.exports = function($timeout) {
+module.exports = function($timeout, ticker) {
   return function(callbacks) {
-    return new Clock($timeout, callbacks);
+    return new Clock($timeout, ticker, callbacks);
   };
 };
