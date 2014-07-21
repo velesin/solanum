@@ -3,7 +3,7 @@
 var moment = require('moment');
 var config = require('../config');
 
-function Clock($timeout, ticker, callbacks) {
+function Clock(ticker, callbacks) {
   var focusDuration = moment.duration(config.focusDurationMinutes, 'minutes').asMilliseconds();
   var warningPeriod = moment.duration(config.warningPeriodSeconds, 'seconds').asMilliseconds();
 
@@ -53,8 +53,8 @@ function Clock($timeout, ticker, callbacks) {
   this.stop = stop;
 };
 
-module.exports = function($timeout, ticker) {
+module.exports = function(ticker) {
   return function(callbacks) {
-    return new Clock($timeout, ticker, callbacks);
+    return new Clock(ticker, callbacks);
   };
 };
